@@ -1,0 +1,82 @@
+Docker
+
+Sudo docker images
+
+Sudo docker run -it -p 82:80 -d hahar/apache 
+
+Sudo docker run -it -v container_name
+
+Sudo docker ps
+
+Sudo docker rm -f docker_hash_id
+
+Sudo docker stop docker_hash_id
+
+Sudo docker commit docker_hash_id new_docker_name
+
+Sudo docker images
+
+To push to dockerhub
+Sudo docker login 
+
+Sudo docker push container_name
+
+Dockerfile
+Write command in dockerfile which will be used to create the docker container
+
+File format
+
+FROM ubuntu 
+Ubuntu is docker file that we downloaded
+
+ADD from_file_path to_file_path
+From_file_path is the location form where the file will be copied 
+To_file_path is the location where the files will be copied inside the container
+
+ADD . /var/www/html
+
+RUN to run the commmand in the container 
+
+RUN apt-get update
+RUN apt-get -y install apache2 
+
+CMD is used to run the command which will run at the start of container. But it will only happen when no arguments were given at the start of container
+
+CMD apachectl -D FOREGROUND
+
+ENTRYPOINT is strictly used to run command at the moment the container initialises 
+
+ENTRYPOINT apachectl -D FOREGROUND
+
+ENV. To set environment variable 
+
+ENV name crackit
+
+Sudo docker build . -t new_docker_from_dockerfile
+
+DOCKER VOLUME
+
+The files will be on the host ineasted of the container. Which is mapped to 
+
+Docker volume create volume_name
+
+Docker volume ls
+
+docker run -it — mount source=<name_of _volune>, target=<path_to_directory> -d <image_name>
+
+Docker -it —mount source=test,target=/app -d Ubuntu 
+
+
+
+
+
+
+BIND MOUNT
+The directory of the host will be mapped to the container mount... any changes made to the directory will be reflected in the container mount. 
+
+
+
+But the file system has to same 
+
+If any user is going to download the container from docker hub having this bind mount will face the issue as the directory might not be present there. Persisting data is hard to handle in different OS.
+
